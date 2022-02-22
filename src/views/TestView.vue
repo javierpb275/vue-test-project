@@ -1,32 +1,38 @@
 <script setup>
-const hello = false;
-const googleLink = "https://www.google.com/";
-const saySth = () => {
-  if (hello) {
-    alert("hello");
-  } else {
-    alert("bye");
-  }
-};
-const someAttribute = 'href';
-const someUrl = "https://www.google.com/";
-const someEvent = 'focus';
-const onSubmit = () => {
-  alert('submitted form!')
+import { reactive } from "vue";
+
+const state = reactive({ count: 0 });
+
+function increment() {
+  state.count++;
+  nextTick(() => {
+    // access updated DOM
+  });
+}
+
+const obj = reactive({
+  nested: { count: 0 },
+  arr: ["foo", "bar"],
+});
+
+function mutateDeeply() {
+  obj.nested.count++;
+  obj.arr.push("baz");
 }
 </script>
 
 <template>
   <main>
-    <p v-if="hello">hello</p>
-    <p v-else>bye</p>
-    <a :href="googleLink">google</a>
-    <br>
-    <a :[someAttribute]="someUrl">some place</a>
-    <p @click="saySth">say sth</p>
-    <input @[someEvent]="saySth" type="text"/>
-    <form @submit.prevent="onSubmit">
-      <button type="submit">submit form</button>
-    </form>
+    <button @click="increment">
+      {{ state.count }}
+    </button>
+
+    <button @click="mutateDeeply">
+      {{ obj.nested.count }}
+    </button>
+
+    <ul>
+      <li v-for="item in obj.arr" :key="item">{{ item }}</li>
+    </ul>
   </main>
 </template>
