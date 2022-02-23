@@ -1,41 +1,16 @@
 <script setup>
 import { reactive, computed, ref } from "vue";
-
-const author = reactive({
-  name: "John Doe",
-  books: [
-    "Vue 2 - Advanced Guide",
-    "Vue 3 - Basic Guide",
-    "Vue 4 - The Mystery",
-  ],
-});
-
-// a computed ref
-const publishedBooksMessage = computed(() => {
-  return author.books.length > 0 ? "Yes" : "No";
-});
-
-const firstName = ref("John");
-const lastName = ref("Doe");
-
-const fullName = computed({
-  // getter
-  get() {
-    return firstName.value + " " + lastName.value;
-  },
-  // setter
-  set(newValue) {
-    // Note: we are using destructuring assignment syntax here.
-    [firstName.value, lastName.value] = newValue.split(" ");
-  },
-});
+const type = ref("s");
+const awesome = ref(false);
 </script>
 
 <template>
   <main>
-    <p>Has published books:</p>
-    <span>{{ publishedBooksMessage }}</span>
-    <br>
-    <span>{{fullName}}</span>
+    <div v-if="type === 'A'">A</div>
+    <div v-else-if="type === 'B'">B</div>
+    <div v-else-if="type === 'C'">C</div>
+    <div v-else>Not A/B/C</div>
+    <button @click="awesome = !awesome">Toggle</button>
+    <h1 v-show="awesome">Hello!</h1>
   </main>
 </template>
