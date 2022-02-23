@@ -1,16 +1,23 @@
 <script setup>
 import { reactive, computed, ref } from "vue";
-const type = ref("s");
-const awesome = ref(false);
+
+const items = ref([{ message: "Foo" }, { message: "Bar" }]);
+
+const myObject = reactive({
+  title: "How to do lists in Vue",
+  author: "Jane Doe",
+  publishedAt: "2016-04-10",
+});
 </script>
 
 <template>
   <main>
-    <div v-if="type === 'A'">A</div>
-    <div v-else-if="type === 'B'">B</div>
-    <div v-else-if="type === 'C'">C</div>
-    <div v-else>Not A/B/C</div>
-    <button @click="awesome = !awesome">Toggle</button>
-    <h1 v-show="awesome">Hello!</h1>
+    <li v-for="(item, index) of items" :key="item">
+      {{ index }} - {{ item.message }}
+    </li>
+    <br /><br />
+    <li v-for="(value, key, index) in myObject" :key="value">
+      {{ index }}. {{ key }}: {{ value }}
+    </li>
   </main>
 </template>
