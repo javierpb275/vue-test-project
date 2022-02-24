@@ -1,33 +1,35 @@
 <script setup>
-import BlogPost from "../components/BlogPost.vue";
-import CountButton from "../components/CountButton.vue";
-import { ref } from "vue";
-
-const posts = ref([
-  { id: 1, title: "My journey with Vue" },
-  { id: 2, title: "Blogging with Vue" },
-  { id: 3, title: "Why Vue is so fun" },
-]);
-
-const postFontSize = ref(1);
-
-const count = ref(1)
-
-function increaseCount(n) {
-  count.value += n;
-}
+import BaseLayout from "../components/BaseLayout.vue";
 </script>
 
 <template>
   <main>
-    <div :style="{ fontSize: postFontSize + 'em' }">
-      <blog-post
-        v-for="post in posts"
-        :key="post.id"
-        :post-title="post.title"
-        @enlarge-text="postFontSize += 0.1"
-      ></blog-post>
-    </div>
-    <CountButton @increase-by="increaseCount" :count="count"/>
+    <BaseLayout>
+      <template #header>
+        <h1>Here might be a page title</h1>
+      </template>
+
+      <template #default>
+        <p>A paragraph for the main content.</p>
+        <p>And another one.</p>
+      </template>
+
+      <template #footer>
+        <p>Here's some contact info</p>
+      </template>
+    </BaseLayout>
+    <BaseLayout>
+      <template #header>
+        <h1>Here might be a page title</h1>
+      </template>
+
+      <!-- implicit default slot -->
+      <p>A paragraph for the main content.</p>
+      <p>And another one.</p>
+
+      <template #footer>
+        <p>Here's some contact info</p>
+      </template>
+    </BaseLayout>
   </main>
 </template>
