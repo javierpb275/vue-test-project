@@ -17,7 +17,7 @@ const postFontSize = ref(1);
       <blog-post
         v-for="post in posts"
         :key="post.id"
-        :title="post.title"
+        :post-title="post.title"
         @enlarge-text="postFontSize += 0.1"
       ></blog-post>
     </div>
