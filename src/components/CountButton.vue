@@ -1,9 +1,14 @@
 <script setup>
 import { ref } from "vue";
-
-const count = ref(0);
+defineProps({
+  count: {
+    type: Number,
+    required: true,
+  },
+});
+const emit = defineEmits(["increaseBy"]);
 </script>
 
 <template>
-  <button @click="count++">{{ count }}</button>
+  <button @click="emit('increaseBy', count)">Increase by {{ count }}</button>
 </template>

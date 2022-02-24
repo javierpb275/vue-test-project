@@ -6,7 +6,6 @@ defineProps({
   },
 });
 defineEmits(["enlarge-text"]);
-//const emit = defineEmits(['enlarge-text']) this way you do not need to use the $
 </script>
 
 <template>

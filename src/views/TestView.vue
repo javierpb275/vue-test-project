@@ -1,5 +1,6 @@
 <script setup>
 import BlogPost from "../components/BlogPost.vue";
+import CountButton from "../components/CountButton.vue";
 import { ref } from "vue";
 
 const posts = ref([
@@ -9,6 +10,12 @@ const posts = ref([
 ]);
 
 const postFontSize = ref(1);
+
+const count = ref(1)
+
+function increaseCount(n) {
+  count.value += n;
+}
 </script>
 
 <template>
@@ -21,5 +28,6 @@ const postFontSize = ref(1);
         @enlarge-text="postFontSize += 0.1"
       ></blog-post>
     </div>
+    <CountButton @increase-by="increaseCount" :count="count"/>
   </main>
 </template>
