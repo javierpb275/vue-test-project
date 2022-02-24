@@ -1,23 +1,39 @@
 <script setup>
 import { reactive, computed, ref } from "vue";
 
-const items = ref([{ message: "Foo" }, { message: "Bar" }]);
+const name = ref("Vue.js");
 
-const myObject = reactive({
-  title: "How to do lists in Vue",
-  author: "Jane Doe",
-  publishedAt: "2016-04-10",
-});
+function greet(event) {
+  alert(`Hello ${name.value}!`);
+  if (event) {
+    alert(event.target.tagName);
+  }
+}
+
+function say(message) {
+  alert(message);
+}
+
+function warn(message, event) {
+  if (event) {
+    event.preventDefault();
+  }
+  alert(message);
+}
 </script>
 
 <template>
   <main>
-    <li v-for="(item, index) of items" :key="item">
-      {{ index }} - {{ item.message }}
-    </li>
-    <br /><br />
-    <li v-for="(value, key, index) in myObject" :key="value">
-      {{ index }}. {{ key }}: {{ value }}
-    </li>
+    <button @click="greet">Greet</button>
+    <button @click="say('hello')">Say hello</button>
+    <button @click="say('bye')">Say bye</button>
+    <button @click="warn('Form cannot be submitted yet.', $event)">
+      Submit
+    </button>
+    <button @click="(event) => warn('Form cannot be submitted yet.', event)">
+      Submit
+    </button>
+    <form @submit.prevent="onSubmit"></form>
+    <form @submit.prevent></form>
   </main>
 </template>
