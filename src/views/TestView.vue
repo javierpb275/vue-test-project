@@ -27,5 +27,9 @@ const changeName = (newName) => {
     <button @click="changeName(inputName)">change name</button>
     <hr />
     <button @click="counterStore.$reset()">reset</button>
+    <hr />
+    <p>Double count is {{ counterStore.doublePlusOne }}</p>
+    <hr />
+    <p>active user by id: {{ counterStore.getActiveUserById(3).name }}</p>
   </main>
 </template>
