@@ -26,10 +26,12 @@ const changeName = (newName) => {
     <input type="text" placeholder="change name..." v-model="inputName" />
     <button @click="changeName(inputName)">change name</button>
     <hr />
-    <button @click="counterStore.$reset()">reset</button>
+    <button @click="counterStore.$reset">reset</button>
     <hr />
     <p>Double count is {{ counterStore.doublePlusOne }}</p>
     <hr />
     <p>active user by id: {{ counterStore.getActiveUserById(3).name }}</p>
+    <hr />
+    <button @click="counterStore.randomizeCounter">random counter</button>
   </main>
 </template>
